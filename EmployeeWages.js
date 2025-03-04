@@ -48,7 +48,6 @@ while (totalEmpHrsLimit < MAX_HRS_IN_MONTH && totalWorkingDaysLimit < NUM_OF_WOR
     console.log(`Total Days: ${totalWorkingDaysLimit}, Total Hrs: ${totalEmpHrsLimit}, Emp Wage: ${empWageLimit}`);
 }
 
-// UC 6: Store Daily Wage in an Array
 function calcDailyWage(empHrs) {
         return empHrs * WAGE_PER_HOUR;
     }
@@ -58,14 +57,18 @@ function calcDailyWage(empHrs) {
     let totalEmpHr = 0;
     let totalWorkingDays = 0;
     let empDailyWageArr = new Array();
-    
+let empDailyWageMap = new Map();
+
     while (totalEmpHrs <= MAX_HRS_INMONTH && totalWorkingDays < NUM_OF_WORKINGDAYS) {
         totalWorkingDays++;
         let empCheck = Math.floor(Math.random() * 10) % 3;
         let empHrs = getWorkingHours(empCheck);
         totalEmpHr += empHrs;
         empDailyWageArr.push(calcDailyWage(empHrs));
+        empDailyWageMap.set(totalWorkingDays, calcDailyWage(empHrs));
     }
+    
+    console.log(empDailyWageMap);
     
     let empWage = calcDailyWage(totalEmpHrs);
     console.log(`Total Days: ${totalWorkingDays}, Total Hrs: ${totalEmpHr}, Emp Wage: ${empWage}`);
@@ -81,7 +84,7 @@ function calcDailyWage(empHrs) {
     function totalWages(totalWage, dailyWage) {
         return totalWage + dailyWage;
     }
-    console.log("UC7A - Emp Wage with reduce:", empDailyWageArr.reduce(totalWages, 0));
+    console.log("UC7A -Emp Wage Map Total Hrs:", Array.from(empDailyWageMap.values()).reduce(totalWages, 0));
     
     
     let dailyCounter = 0;
