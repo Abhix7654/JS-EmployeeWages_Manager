@@ -35,3 +35,15 @@ for (let day = 0; day < NUM_OF_WORKING_DAYS; day++) {
     }
 let dailyWage = getWorkingHours(empCheck) * WAGE_PER_HOUR;
 console.log(`Total Monthly Hours: ${totalEmpHrs}, Total Monthly Wage: ${totalEmpHrs * WAGE_PER_HOUR}`);
+
+const MAX_HRS_IN_MONTH = 100;
+const NUM_OF_WORKING_DAYS_LIMIT = 10;
+let totalEmpHrsLimit = 0;
+let totalWorkingDaysLimit = 0;
+while (totalEmpHrsLimit < MAX_HRS_IN_MONTH && totalWorkingDaysLimit < NUM_OF_WORKING_DAYS_LIMIT) {
+    totalWorkingDaysLimit++;
+    let empCheck = Math.floor(Math.random() * 10) % 3;
+    totalEmpHrsLimit += getWorkingHours(empCheck);
+    let empWageLimit = totalEmpHrsLimit * WAGE_PER_HOUR;
+    console.log(`Total Days: ${totalWorkingDaysLimit}, Total Hrs: ${totalEmpHrsLimit}, Emp Wage: ${empWageLimit}`);
+}
