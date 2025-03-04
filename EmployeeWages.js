@@ -149,7 +149,6 @@ empDailyHrsMap.set(5, 4);
     console.log("Working Days:", partWorkingDays);
     console.log("Non Working Days:", nonWorkingDays);
 
-// UC 10 Object Creation
 let empDailyHrsAndWageArr = new Array();
 let totalEmpHrs1 = 0;  
 let totalWorkingDays1 = 0;
@@ -171,3 +170,28 @@ while (totalEmpHrs1 < MAX_HRS_IN_MONTH && totalWorkingDays1 < NUM_OF_WORKING_DAY
 }
 
 console.log("UC10 - Showing Daily Hours Worked and Wage Earned:", empDailyHrsAndWageArr);
+
+let totalWage = empDailyHrsAndWageArr
+    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage > 0)
+    .reduce((totalWage, dailyHrsAndWage) => totalWage + dailyHrsAndWage.dailyWage, 0);
+
+let totalHour = empDailyHrsAndWageArr
+    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours > 0)
+    .reduce((totalHours, dailyHrsAndWage) => totalHours + dailyHrsAndWage.dailyHours, 0);
+
+console.log("UC11A - Total Hours: " + totalHours + " Total Wages: " + totalWages);
+
+console.log("UC11B - Logging Full Work Days");
+empDailyHrsAndWageArr
+    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours === 8)
+    .forEach(dailyHrsAndWage => console.log(dailyHrsAndWage.toString()));
+
+let partWorkingDayStrArr = empDailyHrsAndWageArr
+    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours === 4)
+    .map(dailyHrsAndWage => dailyHrsAndWage.toString());
+console.log("UC11C - PartWorkingDayStrings: " + partWorkingDayStrArr);
+
+let nonWorkingDayNums = empDailyHrsAndWageArr
+    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours === 0)
+    .map(dailyHrsAndWage => dailyHrsAndWage.dayNum);
+console.log("UC11D - NonWorkingDayNums: " + nonWorkingDayNums);
