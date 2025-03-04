@@ -47,3 +47,26 @@ while (totalEmpHrsLimit < MAX_HRS_IN_MONTH && totalWorkingDaysLimit < NUM_OF_WOR
     let empWageLimit = totalEmpHrsLimit * WAGE_PER_HOUR;
     console.log(`Total Days: ${totalWorkingDaysLimit}, Total Hrs: ${totalEmpHrsLimit}, Emp Wage: ${empWageLimit}`);
 }
+
+// UC 6: Store Daily Wage in an Array
+function calcDailyWage(empHrs) {
+        return empHrs * WAGE_PER_HOUR;
+    }
+    
+    const MAX_HRS_INMONTH = 160;
+    const NUM_OF_WORKINGDAYS = 20;
+    let totalEmpHr = 0;
+    let totalWorkingDays = 0;
+    let empDailyWageArr = new Array();
+    
+    while (totalEmpHrs <= MAX_HRS_INMONTH && totalWorkingDays < NUM_OF_WORKINGDAYS) {
+        totalWorkingDays++;
+        let empCheck = Math.floor(Math.random() * 10) % 3;
+        let empHrs = getWorkingHours(empCheck);
+        totalEmpHr += empHrs;
+        empDailyWageArr.push(calcDailyWage(empHrs));
+    }
+    
+    let empWage = calcDailyWage(totalEmpHrs);
+    console.log(`Total Days: ${totalWorkingDays}, Total Hrs: ${totalEmpHr}, Emp Wage: ${empWage}`);
+    console.log("Daily Wages Array:", empDailyWageArr);
