@@ -120,4 +120,31 @@ let empDailyWageMap = new Map();
         return numOfDays;
     }
     console.log("UC7G - Number Of Days Emp Worked:", empDailyWageArr.reduce(totalDaysWorked, 0));
+
+    let empDailyHrsMap = new Map();
+
+empDailyHrsMap.set(1, 8);
+empDailyHrsMap.set(2, 4);
+empDailyHrsMap.set(3, 0);
+empDailyHrsMap.set(4, 8);
+empDailyHrsMap.set(5, 4);
     
+    const findTotal = (totalVal, dailyVal) => totalVal + dailyVal;
+    let count = 0;
+    let totalHours = Array.from(empDailyHrsMap.values()).reduce(findTotal, 0);
+    let totalSalary = empDailyWageArr.filter(dailyWage => dailyWage > 0).reduce(findTotal, 0);
+    console.log("UC9A— Emp Wage with Arrow. : ","Total Hour", totalHours, "Total Wages:", totalSalary);
+    
+    let nonWorkingDays = new Array();
+    let partWorkingDays = new Array();
+    let fullWorkingDays = new Array();
+    
+    empDailyHrsMap.forEach((value, key, map) => {
+        if (value === 8) fullWorkingDays.push(key);
+        else if (value === 4) partWorkingDays.push(key);
+        else nonWorkingDays.push(key);
+    });
+    
+    console.log("Working Days:", fullWorkingDays);
+    console.log("Working Days:", partWorkingDays);
+    console.log("Non Working Days:", nonWorkingDays);
